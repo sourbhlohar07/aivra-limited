@@ -56,10 +56,10 @@ function App() {
         <Products onEnquireClick={handleEnquireClick} />
 
         {/* 6. Gallery */}
-        <Gallery />
+        
 
         {/* 7. Testimonials */}
-        <Testimonials />
+       
 
         {/* 8. Contact Us */}
         <Contact productName={selectedProduct} />

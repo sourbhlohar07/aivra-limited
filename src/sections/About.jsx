@@ -14,7 +14,7 @@ const About = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-xs uppercase tracking-widest font-extrabold text-brand-blue-medium">About Aivra</h2>
           <p className="text-3xl sm:text-4xl font-bold text-brand-blue-dark">
-            Pure Spring & Alkaline Mineral Water Engineered for Wellness
+            8+pH & Alkaline Mineral Water Engineered for Wellness
           </p>
           <div className="w-16 h-1 bg-brand-blue-medium mx-auto rounded-full"></div>
         </div>
@@ -81,7 +81,7 @@ const About = () => {
             </div>
 
             {/* Plant Quality Standards */}
-            <div className="flex items-center space-x-6 pt-4 border-t border-slate-100">
+            {/* <div className="flex items-center space-x-6 pt-4 border-t border-slate-100">
               <div className="flex items-center space-x-2">
                 <Award className="w-5 h-5 text-brand-blue-medium" />
                 <span className="text-sm font-semibold text-brand-blue-navy">ISO Compliant Plant</span>
@@ -90,7 +90,7 @@ const About = () => {
                 <ShieldCheck className="w-5 h-5 text-brand-blue-medium" />
                 <span className="text-sm font-semibold text-brand-blue-navy">100% Automated Bottling</span>
               </div>
-            </div>
+            </div> */}
 
           </div>
 
