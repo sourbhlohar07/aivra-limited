@@ -18,9 +18,9 @@ const Navbar = ({ onEnquireClick }) => {
     { name: 'About Us', href: '#about' },
     { name: 'Why Choose Us', href: '#why-choose-us' },
     { name: 'Purification', href: '#purification' },
-    { name: 'Products', href: '#products' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Testimonials', href: '#testimonials' },
+    // { name: 'Products', href: '#products' },
+    // { name: 'Gallery', href: '#gallery' },
+    // { name: 'Testimonials', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
   ];
 

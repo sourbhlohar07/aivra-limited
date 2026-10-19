@@ -27,19 +27,49 @@ const Contact = ({ productName }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API Submission
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        message: "",
+
+    const enquiryData = {
+      fullname: formData.name,
+      phoneNo: formData.phone,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/enquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(enquiryData),
       });
-    }, 4000);
+
+      if (!response.ok) {
+        throw new Error("Failed to submit enquiry");
+      }
+
+      const data = await response.json();
+
+      console.log("Enquiry saved:", data);
+
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
+      }, 40000);
+    } catch (error) {
+      console.error("Error submitting enquiry:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -138,7 +168,7 @@ const Contact = ({ productName }) => {
                       href="mailto:info@aivralimited.com"
                       className="hover:text-brand-blue-medium transition-colors"
                     >
-                     info@aivralimited.com
+                      info@aivralimited.com
                     </a>
                   </p>
                 </div>
@@ -161,18 +191,57 @@ const Contact = ({ productName }) => {
               </div>
             </div>
 
-            {/* Google Map Section */}
-            <div className="border border-brand-blue-light/50 rounded-3xl overflow-hidden shadow-md h-60 relative bg-slate-100">
-              {/* Google Map Iframe for Bhatar, Surat */}
-              <iframe
-                title="Aivra Limited Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.6729221235315!2d72.81223407604107!3d21.165415783072216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04dec85390977%3A0xe10433230a13ea1b!2sBalkrishna%20Industrial%20Society%20%2C%20Bhatar%2C%20Surat!5e0!3m2!1sen!2sin!4v1716382029381!5m2!1sen!2sin"
-                className="absolute inset-0 w-full h-full border-0"
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+           
+
+{/* Google Map Section */}
+<div className="border border-brand-blue-light/50 rounded-3xl overflow-hidden shadow-md h-60 relative bg-slate-100">
+
+  {/* Google Map Preview */}
+  <iframe
+    title="Aivra Limited Location Map"
+    src="https://maps.google.com/maps?q=AIVRA%20LIMITED%2C%20Balkrishna%20Society%2C%20Bhatar%20Road%2C%20Surat%2C%20Gujarat%20395007&output=embed"
+    className="absolute inset-0 w-full h-full border-0"
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    style={{ pointerEvents: "none" }}
+  />
+
+  {/* Visible AIVRA LIMITED Label */}
+  <div className="absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg flex items-center gap-3">
+    <div className="w-10 h-10 rounded-lg bg-brand-blue-light/20 flex items-center justify-center">
+      <span className="text-brand-blue font-bold text-lg">A</span>
+    </div>
+    <div>
+      <p className="font-bold text-slate-900 text-sm">
+        AIVRA LIMITED
+      </p>
+      <p className="text-xs text-slate-500">
+        Factory &amp; Office · Surat, Gujarat
+      </p>
+    </div>
+  </div>
+
+  {/* Clickable Map */}
+  <a
+    href="https://maps.app.goo.gl/LYVjfy7pxZxwSGFk7?g_st=aw"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open Aivra Limited in Google Maps"
+    className="absolute inset-0 z-10"
+  />
+
+  {/* Open Map Button */}
+  <a
+    href="https://maps.app.goo.gl/LYVjfy7pxZxwSGFk7?g_st=aw"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="absolute bottom-3 right-3 z-20 bg-white text-slate-800 text-xs font-semibold px-3 py-2 rounded-lg shadow-md hover:bg-slate-50"
+  >
+    Open in Google Maps ↗
+  </a>
+</div>
+
+
           </div>
 
           {/* Contact Form Column */}
